@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wild Edible Plant Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌱 Wild Edible Plant Classifier</h1>
+            <p class="subtitle">AI-powered identification of 35 wild edible plant species</p>
+            <nav>
+                <a href="/" class="active">Classify</a>
+                <a href="/info">Model Info</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="upload-box" id="uploadBox">
+                    <div class="upload-icon">📷</div>
+                    <h2>Upload Plant Image</h2>
+                    <p>Click to select or drag and drop an image</p>
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                    <button class="btn-primary" onclick="document.getElementById('fileInput').click()">
+                        Choose Image
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="image-preview">
+                    <h3>Uploaded Image</h3>
+                    <img id="previewImage" alt="Uploaded plant">
+                </div>
+
+                <div class="predictions">
+                    <h3>Predictions</h3>
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                        <p>Analyzing image...</p>
+                    </div>
+                    <div id="predictionResults" style="display: none;">
+                        <!-- Results will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="card-icon">🎯</div>
+                    <h3>80.67%</h3>
+                    <p>Accuracy</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">🌿</div>
+                    <h3>35</h3>
+                    <p>Plant Species</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">🖼️</div>
+                    <h3>16,535</h3>
+                    <p>Training Images</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">🤖</div>
+                    <h3>ResNet-34</h3>
+                    <p>Architecture</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Safety Warning:</strong> Never consume wild plants based solely on AI predictions! 
+                Always consult expert botanists and use multiple identification methods. 
+                Some plants are toxic and can be deadly.
+            </div>
+        </main>
+
+        <footer>
+            <p>Built with PyTorch & Flask | <a href="https://github.com/Achronus/wep-classifier" target="_blank">GitHub</a></p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

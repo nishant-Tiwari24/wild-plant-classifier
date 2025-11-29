@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Information - Wild Edible Plant Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌱 Wild Edible Plant Classifier</h1>
+            <p class="subtitle">Model Information & Statistics</p>
+            <nav>
+                <a href="/">Classify</a>
+                <a href="/info" class="active">Model Info</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="info-section">
+                <h2>📊 Model Performance</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">{{ "%.2f"|format(stats.accuracy) }}%</div>
+                        <div class="stat-label">Accuracy</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">{{ "%.2f"|format(stats.top5_accuracy) }}%</div>
+                        <div class="stat-label">Top-5 Accuracy</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">{{ "%.2f"|format(stats.precision) }}%</div>
+                        <div class="stat-label">Precision</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">{{ "%.2f"|format(stats.recall) }}%</div>
+                        <div class="stat-label">Recall</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">{{ "%.2f"|format(stats.f1_score) }}%</div>
+                        <div class="stat-label">F1-Score</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h2>🤖 Model Architecture</h2>
+                <div class="architecture-info">
+                    <p><strong>Base Model:</strong> ResNet-34 (Deep Residual Network)</p>
+                    <p><strong>Parameters:</strong> 21.8 Million</p>
+                    <p><strong>Custom Classifier:</strong> 512 → 1024 → 516 → 35 classes</p>
+                    <p><strong>Regularization:</strong> Dropout (0.5)</p>
+                    <p><strong>Activation:</strong> ReLU + Log Softmax</p>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h2>⚙️ Training Configuration</h2>
+                <div class="training-info">
+                    <p><strong>Dataset:</strong> 16,535 images (35 classes)</p>
+                    <p><strong>Split:</strong> 70% train / 15% validation / 15% test</p>
+                    <p><strong>Epochs:</strong> 20</p>
+                    <p><strong>Batch Size:</strong> 128</p>
+                    <p><strong>Optimizer:</strong> Adam</p>
+                    <p><strong>Learning Rate:</strong> 0.001</p>
+                    <p><strong>Data Augmentation:</strong> Rotation, Flip, Crop, Color Jitter</p>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h2>🌿 Plant Species ({{ classes|length }} classes)</h2>
+                <div class="classes-grid">
+                    {% for class_name in classes %}
+                    <div class="class-item">{{ loop.index }}. {{ class_name }}</div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h2>📚 How It Works</h2>
+                <div class="how-it-works">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Upload Image</h3>
+                            <p>Upload a photo of a plant (JPG, PNG)</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Preprocessing</h3>
+                            <p>Image is resized to 224×224 and normalized</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Feature Extraction</h3>
+                            <p>CNN extracts visual features (edges, colors, shapes)</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Classification</h3>
+                            <p>Model predicts plant species with confidence scores</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Results</h3>
+                            <p>Top-5 predictions displayed with probabilities</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="back-button">
+                <a href="/" class="btn-primary">← Back to Classifier</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built with PyTorch & Flask | <a href="https://github.com/Achronus/wep-classifier" target="_blank">GitHub</a></p>
+        </footer>
+    </div>
+</body>
+</html>
