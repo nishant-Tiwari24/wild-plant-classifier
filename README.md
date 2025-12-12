@@ -2,7 +2,8 @@
 
 This repository focuses on a Wild Edible Plant Classifier that compares the performance of three state-of-the-art CNN architectures: MobileNet v2, GoogLeNet, and ResNet-34. The artefact created is part of my BSc dissertation, aimed at classifying 35 classes of wild edible plants using Transfer Learning.
 
-## Demonstration Video : ![Click here](https://www.loom.com/share/90f3bfd51cd34912bafcc999ff75c38c)
+## Demonstration Video : https://www.loom.com/share/90f3bfd51cd34912bafcc999ff75c38c
+
 
 ## Dataset
 
